@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Movies</string>
+
+    <string name="placeholder">PLACEHOLDER</string>
+
+    <string name="api_key">eea1aa296b074698f67f44505921894f</string>
+</resources>
