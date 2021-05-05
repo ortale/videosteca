@@ -1,5 +1,6 @@
 package com.joseortale.ortalesoft.moviesteca.model.apiresponse;
 
+
 import com.google.gson.annotations.SerializedName;
 
 public class CollectionResponse {

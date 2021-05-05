@@ -10,7 +10,7 @@ public class DetailsResponse {
     private String id;
 
     @SerializedName("belongs_to_collection")
-    private Object belongsToCollection;
+    private CollectionResponse belongsToCollection;
 
     public String getHomepage() {
         return homepage;
@@ -28,11 +28,11 @@ public class DetailsResponse {
         this.id = id;
     }
 
-    public Object getBelongsToCollection() {
+    public CollectionResponse getBelongsToCollection() {
         return belongsToCollection;
     }
 
-    public void setBelongsToCollection(Object belongsToCollection) {
+    public void setBelongsToCollection(CollectionResponse belongsToCollection) {
         this.belongsToCollection = belongsToCollection;
     }
 }

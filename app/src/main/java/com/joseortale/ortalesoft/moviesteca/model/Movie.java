@@ -1,50 +1,32 @@
 package com.joseortale.ortalesoft.moviesteca.model;
 
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.joseortale.ortalesoft.moviesteca.model.apiresponse.CollectionResponse;
 
-@Entity
 public class Movie {
     @SerializedName("id")
-    @Expose
-    @PrimaryKey
-    @NonNull
     private Integer id;
 
     @SerializedName("title")
-    @Expose
-    @ColumnInfo(name = "title")
     private String title;
 
     @SerializedName("adult")
-    @Expose
-    @ColumnInfo(name = "adult")
     private Boolean adult;
 
     @SerializedName("release_date")
-    @Expose
-    @ColumnInfo(name = "release_date")
     private String releaseDate;
 
-    @Expose
-    @ColumnInfo(name = "overview")
+    @SerializedName("overview")
     private String overview;
 
-    @Expose
-    @ColumnInfo(name = "homepage")
+    @SerializedName("homepage")
     private String homepage;
 
-    @Expose
-    @ColumnInfo(name = "name")
+    @SerializedName("name")
     private String name;
 
-    @ColumnInfo(name = "belongs_to_collection")
-    private String belongsToCollection;
+    @SerializedName("belongs_to_collection")
+    private CollectionResponse belongsToCollection;
 
     public Integer getId() {
         return id;
@@ -102,11 +84,11 @@ public class Movie {
         this.name = name;
     }
 
-    public String getBelongsToCollection() {
+    public CollectionResponse getBelongsToCollection() {
         return belongsToCollection;
     }
 
-    public void setBelongsToCollection(String belongsToCollection) {
+    public void setBelongsToCollection(CollectionResponse belongsToCollection) {
         this.belongsToCollection = belongsToCollection;
     }
 }

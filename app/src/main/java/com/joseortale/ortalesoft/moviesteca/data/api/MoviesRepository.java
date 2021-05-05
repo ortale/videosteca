@@ -25,7 +25,6 @@ public class MoviesRepository {
     private static MoviesRepository instance;
 
     private final ApiEndpoints apiEndpoints;
-    private AppDatabase database;
     private MovieDao movieDao;
     private List<Movie> movies;
     private Movie movie;
@@ -38,8 +37,6 @@ public class MoviesRepository {
 
     private MoviesRepository(Context context) {
         apiEndpoints = RetrofitClient.getClient();
-        database = Room.databaseBuilder(context, AppDatabase.class, "movies").allowMainThreadQueries().build();
-        movieDao = database.submissionDao();
 
         this.context = context;
     }
@@ -101,11 +98,12 @@ public class MoviesRepository {
 
                     if (apiResponse != null) {
                         String homepage = apiResponse.getHomepage();
-                        Object belongsToCollection = apiResponse.getBelongsToCollection();
+                        CollectionResponse belongsToCollection = apiResponse.getBelongsToCollection();
 
                         movie.setHomepage(homepage);
                         movie.setId(id);
-                        movie.setBelongsToCollection(belongsToCollection != null ? belongsToCollection.toString() : "");
+
+                        movie.setBelongsToCollection(belongsToCollection);
 
                         movieData.setValue(movie);
                     }
