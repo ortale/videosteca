@@ -34,6 +34,7 @@ public class MoviesRepository {
 
     private MutableLiveData<List<Movie>> moviesData;
     private MutableLiveData<Movie> movieData;
+    private MutableLiveData<CollectionResponse> collectionData;
 
     private MoviesRepository(Context context) {
         apiEndpoints = RetrofitClient.getClient();
@@ -100,8 +101,11 @@ public class MoviesRepository {
 
                     if (apiResponse != null) {
                         String homepage = apiResponse.getHomepage();
+                        Object belongsToCollection = apiResponse.getBelongsToCollection();
 
                         movie.setHomepage(homepage);
+                        movie.setId(id);
+                        movie.setBelongsToCollection(belongsToCollection != null ? belongsToCollection.toString() : "");
 
                         movieData.setValue(movie);
                     }
@@ -125,8 +129,8 @@ public class MoviesRepository {
         return movieData;
     }
 
-    public MutableLiveData<Movie> getCollectionById(Integer id) {
-        movieData = new MutableLiveData<>();
+    public MutableLiveData<CollectionResponse> getCollectionById(Integer id) {
+        collectionData = new MutableLiveData<>();
 
         apiEndpoints.getCollectionById(id, context.getResources().getString(R.string.api_key)).enqueue(new Callback<CollectionResponse>() {
             @Override
@@ -135,14 +139,7 @@ public class MoviesRepository {
                     CollectionResponse apiResponse = response.body();
 
                     if (apiResponse != null) {
-                        movie = new Movie();
-                        String name = apiResponse.getName();
-                        String overview = apiResponse.getOverview();
-
-                        movie.setName(name);
-                        movie.setOverview(overview);
-
-                        movieData.setValue(movie);
+                        collectionData.setValue(apiResponse);
                     }
 
                     else {
@@ -161,6 +158,6 @@ public class MoviesRepository {
             }
         });
 
-        return movieData;
+        return collectionData;
     }
 }

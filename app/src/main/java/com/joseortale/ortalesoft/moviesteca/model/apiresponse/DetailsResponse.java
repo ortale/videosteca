@@ -9,6 +9,9 @@ public class DetailsResponse {
     @SerializedName("id")
     private String id;
 
+    @SerializedName("belongs_to_collection")
+    private Object belongsToCollection;
+
     public String getHomepage() {
         return homepage;
     }
@@ -23,5 +26,13 @@ public class DetailsResponse {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Object getBelongsToCollection() {
+        return belongsToCollection;
+    }
+
+    public void setBelongsToCollection(Object belongsToCollection) {
+        this.belongsToCollection = belongsToCollection;
     }
 }

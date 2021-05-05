@@ -69,8 +69,6 @@ public class MoviesFragment extends Fragment {
             setupGridLayout();
         });
 
-        setupGridLayout();
-
         return view;
     }
 
@@ -88,6 +86,8 @@ public class MoviesFragment extends Fragment {
             GridLayout.Spec rowSpan = GridLayout.spec(GridLayout.UNDEFINED, 1);
             GridLayout.Spec colspan = GridLayout.spec(GridLayout.UNDEFINED, 1);
             GridLayout.LayoutParams gridParam = new GridLayout.LayoutParams(rowSpan, colspan);
+
+            gridParam.setMargins(10, 10, 10, 10);
 
             glVideos.addView(tvTitle, gridParam);
         }

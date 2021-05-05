@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -12,22 +13,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.joseortale.ortalesoft.moviesteca.R;
 import com.joseortale.ortalesoft.moviesteca.model.Movie;
 import com.joseortale.ortalesoft.moviesteca.viewmodel.MovieViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MovieDetailFragment extends Fragment {
     private Context context;
 
     private MovieViewModel movieViewModel;
     private ProgressBar progressCircular;
+    private LinearLayout llData;
 
     private static final String MOVIE_ID = "MOVIE_ID";
 
@@ -38,7 +34,9 @@ public class MovieDetailFragment extends Fragment {
         MovieDetailFragment fragment = new MovieDetailFragment();
 
         Bundle bundle = new Bundle();
-        bundle.putString(MOVIE_ID, String.valueOf(movie.getId()));
+        bundle.putInt(MOVIE_ID, movie.getId());
+
+        fragment.setArguments(bundle);
 
         return fragment;
     }
@@ -68,12 +66,14 @@ public class MovieDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_video_detail, container, false);
 
         progressCircular = view.findViewById(R.id.progress_circular);
+        llData = view.findViewById(R.id.ll_data);
 
         movieViewModel = ViewModelProviders.of(this).get(MovieViewModel.class);
         movieViewModel.init(context);
         movieViewModel.getMovieById(context, id);
         movieViewModel.getMovieRepository().observe(this, movie -> {
             progressCircular.setVisibility(View.GONE);
+            llData.setVisibility(View.VISIBLE);
             this.movie = movie;
             updateData(view);
             getCollections(movie.getId());

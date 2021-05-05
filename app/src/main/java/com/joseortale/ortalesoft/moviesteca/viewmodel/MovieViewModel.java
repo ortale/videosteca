@@ -8,12 +8,15 @@ import androidx.lifecycle.ViewModel;
 
 import com.joseortale.ortalesoft.moviesteca.data.api.MoviesRepository;
 import com.joseortale.ortalesoft.moviesteca.model.Movie;
+import com.joseortale.ortalesoft.moviesteca.model.apiresponse.ApiResponse;
+import com.joseortale.ortalesoft.moviesteca.model.apiresponse.CollectionResponse;
 
 import java.util.List;
 
 public class MovieViewModel extends ViewModel {
     private MutableLiveData<List<Movie>> mutableList;
     private MutableLiveData<Movie> mutableObject;
+    private MutableLiveData<CollectionResponse> mutableObjectCollection;
     private MoviesRepository moviesRepository;
 
     public void init(Context context) {
@@ -32,7 +35,7 @@ public class MovieViewModel extends ViewModel {
 
     public void getAllCollectionsById(Context context, Integer id) {
         moviesRepository = MoviesRepository.getInstance(context);
-        mutableObject = moviesRepository.getCollectionById(id);
+        mutableObjectCollection = moviesRepository.getCollectionById(id);
     }
 
     public LiveData<List<Movie>> getMoviesRepository() {

@@ -43,6 +43,9 @@ public class Movie {
     @ColumnInfo(name = "name")
     private String name;
 
+    @ColumnInfo(name = "belongs_to_collection")
+    private String belongsToCollection;
+
     public Integer getId() {
         return id;
     }
@@ -97,5 +100,13 @@ public class Movie {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getBelongsToCollection() {
+        return belongsToCollection;
+    }
+
+    public void setBelongsToCollection(String belongsToCollection) {
+        this.belongsToCollection = belongsToCollection;
     }
 }
