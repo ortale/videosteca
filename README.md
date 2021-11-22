@@ -1,4 +1,4 @@
-# android-subreddit-sample
+# videosteca
 
 ## Technologies used on this project
 - Retrofit (https://square.github.io/retrofit/): library used to REST API calls
